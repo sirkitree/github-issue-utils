@@ -7,8 +7,6 @@
     var clones = [],
         clone = [],
         user = '',
-        pathname = '',
-        newPathname = '',
 
         // Find all users.
         users = "div.user-selector ul li label h4:has(span.avatar)",
@@ -40,14 +38,13 @@
             // manipulates all of the actual elements within 'clones'.
             clone = clones[index]
                 .children("a")
-                .removeClass("selected") // github adds unwanted style for this class
+                .removeClass("selected") // github adds unwanted style for this
                 .text("Assigned to " + user)
-                .prepend("<span class='count'></span>"); // No API for counts :`(
+                .prepend("<span class='count'></span>"); // No API for counts
 
-            // Correct the pathname of the link.
-            pathname = clone[0].pathname;
-            newPathname = pathname.replace(new RegExp(currentUserName + '$'), '') + user;
-            clone[0].pathname = newPathname;
+            // Correct the path name of the link.
+            clone[0].pathname = clone[0].pathname
+                .replace(new RegExp(currentUserName + '$'), '') + user;
         }
     });
 
