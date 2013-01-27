@@ -2,47 +2,55 @@
  * Finds all users for a project and creates filter links to their issue queues.
  */
 
-var clones = new Array();
+(function ($) {
 
-// Find all users.
-var users = "div.user-selector ul li label h4:has(span.avatar)";
+    var clones = [],
+        clone = [],
+        user = '',
+        pathname = '',
+        newPathname = '',
 
-// Find the "Assigned to" link.
-var assignedToLink = "#issues_list ul.filter-list:first() li:nth-child(2)";
+        // Find all users.
+        users = "div.user-selector ul li label h4:has(span.avatar)",
 
-// Give it an ID and append a ul container for our new links to live within.
-$(assignedToLink).addClass("giu-filter")
-  .append("<ul id='giu-filter-links'></ul>");
+        // Find the "Assigned to" link.
+        assignedToLink = "#issues_list ul.filter-list:first() li:nth-child(2)",
 
-// Find the current user's username.
-var currentUserName = $("#user-links .name").text().trim();
+        // Find the current user's username.
+        currentUserName = $("#user-links .name").text().trim();
 
-// Clone the "Assigned to" link and create a new one for each user.
-$(users).each(function(index, Element) {
+    // Give the "Assigned to" link an ID and append a ul container for our new
+    // links to live within.
+    $(assignedToLink).addClass("giu-filter")
+        .append("<ul id='giu-filter-links'></ul>");
 
-  // Remove the full name which is in a <small> tag.
-  $(Element).children("small").remove();
+    // Clone the "Assigned to" link and create a new one for each user.
+    $(users).each(function (index, Element) {
 
-  var user = $(Element).text().trim();
+        // Remove the full name which is in a <small> tag.
+        $(Element).children("small").remove();
 
-  if (user !== currentUserName) {
-    clones[index] = $(assignedToLink).clone()
-      .removeClass("giu-filter");
+        user = $(Element).text().trim();
 
-    // Note: Since 'clones' is a clone(), manipulating 'clone' also manipulates
-    // all of the actual elements within 'clones'.
-    var clone = clones[index]
-      .children("a")
-      .removeClass("selected") // github adds unwanted style for this class
-      .text("Assigned to " + user)
-      .prepend("<span class='count'></span>"); // No API for counts :`(
+        if (user !== currentUserName) {
+            clones[index] = $(assignedToLink).clone()
+                .removeClass("giu-filter");
 
-    // Correct the pathname of the link.
-    var pathname = clone[0].pathname,
-      newPathname = pathname.replace(new RegExp(currentUserName + '$'), '') + user;
-    clone[0].pathname = newPathname;
+            // Note: Since 'clones' is a clone(), manipulating 'clone' also
+            // manipulates all of the actual elements within 'clones'.
+            clone = clones[index]
+                .children("a")
+                .removeClass("selected") // github adds unwanted style for this class
+                .text("Assigned to " + user)
+                .prepend("<span class='count'></span>"); // No API for counts :`(
 
-  }
-});
+            // Correct the pathname of the link.
+            pathname = clone[0].pathname;
+            newPathname = pathname.replace(new RegExp(currentUserName + '$'), '') + user;
+            clone[0].pathname = newPathname;
+        }
+    });
 
-$("#giu-filter-links").append(clones);
+    $("#giu-filter-links").append(clones);
+
+})(jQuery);
