@@ -1,0 +1,10 @@
+{
+  "appName": {
+    "message": "github-issue-utils",
+    "description": "The name of the application"
+  },
+  "appDescription": {
+    "message": "Utilities for GitHub Issues",
+    "description": "The description of the application"
+  }
+}

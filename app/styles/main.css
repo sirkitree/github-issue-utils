@@ -1,0 +1,56 @@
+
+li.giu-filter {
+  position: relative;
+  background-color: #eaeaea;
+
+}
+
+  li.giu-filter:after {
+    content: "";
+    clear: both;
+    display: block;
+    position: absolute;
+    border: 3px solid #333333;
+    border-color: #333333 transparent transparent;
+    top: 15px;
+    right: 8px;
+    width: 0px;
+    height: 0px;
+  }
+
+  li.giu-filter:hover > #giu-filter-links {
+    display: block;
+  }
+
+  li.giu-filter span.count {
+    padding-right: 8px;
+  }
+
+
+#giu-filter-links {
+  display: none;
+  background: #fff;
+  padding: 0;
+  position: absolute;
+  top: 100%;
+  border: 1px solid #c1c1c1;
+  border-radius: 5px;
+  box-shadow: 0 0 13px rgba(0,0,0,0.31);
+  width: 300px;
+  z-index: 21;
+}
+  #giu-filter-links li {
+    float: none;
+    border-top: 1px solid rgb(238, 238, 238);
+    position: relative;
+    z-index: 12;
+  }
+    #giu-filter-links li a {
+      color: rgb(102, 102, 102);
+      z-index: 12;
+    }
+      #giu-filter-links li a:hover {
+        background: rgb(79, 131, 196);
+        color: #fff;
+        z-index: 12;
+      }
