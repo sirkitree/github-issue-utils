@@ -17,37 +17,39 @@
         // Find the current user's username.
         currentUserName = $("#user-links .name").text().trim();
 
-    // Give the "Assigned to" link an ID and append a ul container for our new
-    // links to live within.
-    $(assignedToLink).addClass("giu-filter")
-        .append("<ul id='giu-filter-links'></ul>");
+    if ($(users).length !== 0) {
 
-    // Clone the "Assigned to" link and create a new one for each user.
-    $(users).each(function (index, Element) {
+        // Give the "Assigned to" link an ID and append a ul container for our new
+        // links to live within.
+        $(assignedToLink).addClass("giu-filter")
+            .append("<ul id='giu-filter-links'></ul>");
 
-        // Remove the full name which is in a <small> tag.
-        $(Element).children("small").remove();
+        // Clone the "Assigned to" link and create a new one for each user.
+        $(users).each(function (index, Element) {
 
-        user = $(Element).text().trim();
+            // Remove the full name which is in a <small> tag.
+            $(Element).children("small").remove();
 
-        if (user !== currentUserName) {
-            clones[index] = $(assignedToLink).clone()
-                .removeClass("giu-filter");
+            user = $(Element).text().trim();
 
-            // Note: Since 'clones' is a clone(), manipulating 'clone' also
-            // manipulates all of the actual elements within 'clones'.
-            clone = clones[index]
-                .children("a")
-                .removeClass("selected") // github adds unwanted style for this
-                .text("Assigned to " + user)
-                .prepend("<span class='count'></span>"); // No API for counts
+            if (user !== currentUserName) {
+                clones[index] = $(assignedToLink).clone()
+                    .removeClass("giu-filter");
 
-            // Correct the path name of the link.
-            clone[0].pathname = clone[0].pathname
-                .replace(new RegExp(currentUserName + '$'), '') + user;
-        }
-    });
+                // Note: Since 'clones' is a clone(), manipulating 'clone' also
+                // manipulates all of the actual elements within 'clones'.
+                clone = clones[index]
+                    .children("a")
+                    .removeClass("selected") // github adds unwanted style for this
+                    .text("Assigned to " + user)
+                    .prepend("<span class='count'></span>"); // No API for counts
 
-    $("#giu-filter-links").append(clones);
+                // Correct the path name of the link.
+                clone[0].pathname = clone[0].pathname
+                    .replace(new RegExp(currentUserName + '$'), '') + user;
+            }
+        });
 
+        $("#giu-filter-links").append(clones);
+    }
 })(jQuery);
