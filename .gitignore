@@ -1,3 +1,4 @@
 temp/
 *.pem
 .idea/
+dist/
