@@ -1,8 +1,8 @@
 /**
  * Finds all users for a project and creates filter links to their issue queues.
  */
-
-(function ($) {
+function assignedToExtend(){}
+(function () {
 
     var clones = [],
         clone = [],
@@ -52,4 +52,4 @@
 
         $("#giu-filter-links").append(clones);
     }
-})(jQuery);
+}).apply(assignedToExtend);
