@@ -12,7 +12,7 @@
     "matches": [
       "https://github.com/*/*/issues*",
       "https://github.com/*/*/issues",
-      "https://github.com/*/*/issues/assigned/*"
+      "https://github.com/*/*/issues/*/*"
     ],
     "css": ["styles/main.css"],
     "js": ["components/jquery/jquery.min.js", "main.js"]

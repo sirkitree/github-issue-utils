@@ -1,8 +1,7 @@
 /**
  * Finds all users for a project and creates filter links to their issue queues.
  */
-function assignedToExtend(){}
-(function () {
+function assignedToExtend(){
 
     var clones = [],
         clone = [],
@@ -52,4 +51,13 @@ function assignedToExtend(){}
 
         $("#giu-filter-links").append(clones);
     }
-}).apply(assignedToExtend);
+}
+
+assignedToExtend();
+
+$(document).on('mousemove', function() {
+    if ($('#giu-filter-links').length === 0 
+        && $("div.user-selector ul li label h4:has(span.avatar)").length !== 0) {
+        assignedToExtend();
+    }
+});
