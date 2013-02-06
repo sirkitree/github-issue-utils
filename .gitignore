@@ -1,4 +1,7 @@
 temp/
 *.pem
 .idea/
+dist/.DS_Store
+.DS_Store
 dist/
+dist.zip
