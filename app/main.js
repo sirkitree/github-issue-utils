@@ -8,7 +8,7 @@ function assignedToExtend(){
         user = '',
 
         // Find all users.
-        users = "div.user-selector ul li label h4:has(span.avatar)",
+        users = "div[data-filterable-for=assignee-filter-field] h4:has(span.description)",
 
         // Find the "Assigned to" link.
         assignedToLink = "#issues_list ul.filter-list:first() li:nth-child(2)",
@@ -27,7 +27,7 @@ function assignedToExtend(){
         $(users).each(function (index, Element) {
 
             // Remove the full name which is in a <small> tag.
-            $(Element).children("small").remove();
+            $(Element).children("span").remove();
 
             user = $(Element).text().trim();
 
@@ -56,8 +56,8 @@ function assignedToExtend(){
 assignedToExtend();
 
 $(document).on('mousemove', function() {
-    if ($('#giu-filter-links').length === 0 
-        && $("div.user-selector ul li label h4:has(span.avatar)").length !== 0) {
+    if ($('#giu-filter-links').length === 0
+        && $("div[data-filterable-for=assignee-filter-field] h4:has(span.description)").length !== 0) {
         assignedToExtend();
     }
 });
