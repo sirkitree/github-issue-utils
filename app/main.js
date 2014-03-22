@@ -26,7 +26,7 @@ function assignedToExtend(){
         // Clone the "Assigned to" link and create a new one for each user.
         $(users).each(function (index, Element) {
 
-            // Remove the full name which is in a <small> tag.
+            // Remove the full name which is in a <span> tag.
             $(Element).children("span").remove();
 
             user = $(Element).text().trim();
