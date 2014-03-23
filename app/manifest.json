@@ -16,5 +16,8 @@
     ],
     "css": ["styles/main.css"],
     "js": ["components/jquery/jquery.min.js", "main.js"]
-  }]
+  }],
+  "web_accessible_resources": [
+    "components/jquery/jquery.min.map"
+  ]
 }
